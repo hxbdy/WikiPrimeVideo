@@ -37,7 +37,7 @@ public class Contents extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         //条件を引っ張ってくる 
         String search=request.getParameter("search");
-        String title=request.getParameter("title");
+        //String title=request.getParameter("title");
         String genre[] = request.getParameterValues("genre");
         String season[] = request.getParameterValues("season");
         int search_num=0;
@@ -99,6 +99,7 @@ public class Contents extends HttpServlet {
 
         //csvから条件一致を探す
         CsvAnalyzer();
+
         AndSearch(search_num,search,season);
         int and_title_size=and_title.size();
         out.println("<b>");
@@ -118,7 +119,7 @@ public class Contents extends HttpServlet {
     }
 
     public void CsvAnalyzer(){
-        
+        int errLine=0; //Debug
         try {
             File f = new File("animeDB2.csv");
             BufferedReader br = new BufferedReader(new FileReader(f));
@@ -134,10 +135,12 @@ public class Contents extends HttpServlet {
                 start.add(Integer.parseInt(data[5]));
                 season.add(data[6]);
                 path.add(data[7]);
+                errLine++;
             }
             br.close();
         } catch (IOException e) {
             System.out.println(e);
+            System.out.println(errLine+"行目付近で不正フォーマットを検知");
         }
     }
 

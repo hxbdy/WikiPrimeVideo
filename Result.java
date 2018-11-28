@@ -11,7 +11,7 @@ public class Result extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String filepath=request.getParameter("filepath");
         String title,sub;
-        title=filepath.replace("anime/","");
+        title=filepath.replace("../anime/","");
         out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
         out.println("<html>");
         out.println("<body bgcolor=\"gray\">");
@@ -30,8 +30,9 @@ public class Result extends HttpServlet {
         Cookie cookie=new Cookie("path",URLEncoder.encode(ck,"UTF-8"));
         cookie.setMaxAge(7 * 24 * 60 * 60); //a week
         response.addCookie(cookie);
-        File dir=new File("/mnt/hdd/HD-V3/アニメ/workspace/"+filepath);
+        File dir=new File("../" + filepath);
         File[] list=dir.listFiles();
+        //out.println("指定ディレクトリにあったファイル数:"+list.length);
         for(int i=0;i<list.length;i++){
             String dst=list[i].toString();
             dst=dst.replace("/mnt/hdd/HD-V3/アニメ/workspace/", "../");

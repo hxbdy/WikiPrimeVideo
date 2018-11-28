@@ -11,6 +11,7 @@ public class View extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         //条件を引っ張ってくる 
         String filepath=URLDecoder.decode(request.getParameter("filepath"),"UTF-8");
+        filepath=filepath.substring(filepath.indexOf("/")+1);
         String dst=filepath.substring(filepath.lastIndexOf("/")+1);
         dst=dst.replace(".mp4", "");
         dst=dst.replace(".MP4", "");
@@ -30,7 +31,7 @@ public class View extends HttpServlet {
         out.println("<p class=\"resizevideo\">");
                  
         out.println("<video src=\""+filepath+"\" preload=\"none\" controls></video>");
-                
+        
         out.println("</p>");
         out.println("</div>");
         out.println("</body>");

@@ -15,7 +15,7 @@ public class Header extends HttpServlet {
         out.println("<head>");
         out.println("<font size=\"7\">Wiki Prime Video</font>");
         out.println("</head>");
-        out.println("Ver1.0.0");
+        out.println("Ver1.0.1 β");
         out.println("</body>");
         out.println("</html>");
     }
